@@ -3,29 +3,130 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+public enum AIState {
+    wandering,
+    following,
+    done,
+}
+
 public class FollowPlayer : MonoBehaviour {
 
     NavMeshAgent agent;
-    Transform target;
+    Transform player;
+    Transform nodes;
+
+    [SerializeField] AIState state;
+
+    Vector3 target;
+    Vector3 hitPoint;
+
+    bool hitPlayer;
+    bool stopFollowing;
+    float secondsSincePlayerSeen;
 
 	// Use this for initialization
 	void Start () {
         agent = GetComponent<NavMeshAgent>();
-        target = GameObject.FindWithTag("Player").transform;
+        player = GameObject.FindWithTag("Player").transform;
+
+        if (GameObject.Find("Nodes")) {
+            nodes = GameObject.Find("Nodes").transform;
+        } else {
+            state = AIState.done;
+        }
+
+        hitPlayer = false;
+        secondsSincePlayerSeen = 0f;
 	}
+
+    void SwitchState (AIState newState) {
+        state = newState;
+
+        switch (state) {
+            default:
+                break;
+            case AIState.following:
+                //target = player.position;
+                break;
+
+            case AIState.wandering:
+                target = nodes.GetChild(Random.Range(0, nodes.childCount)).position;
+                target.y = transform.position.y;
+                break;
+
+            case AIState.done:
+                transform.position = new Vector3(0f, -100f, 0f);
+                break;
+        }
+    }
 	
 	// Update is called once per frame
 	void Update () {
-        RaycastHit hit;
+        if (state == AIState.done) return;
 
-        if (Physics.Raycast(transform.position, target.position, out hit)) {
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, player.position - transform.position, out hit)) {
+            hitPoint = hit.point;
             if (hit.transform.tag == "Player") {
-                //agent.speed = 3f;
+                SwitchState(AIState.following);
+                hitPlayer = true;
             } else {
-                //agent.speed = 6f;
+                hitPlayer = false;
             }
+        } else {
+            hitPlayer = false;
         }
-        agent.SetDestination(target.position);
-        //agent.CalculatePath(target.position, 
+
+        if (!hitPlayer) {
+            if (secondsSincePlayerSeen > 3f) {
+                if (!stopFollowing) {
+                    if (state == AIState.following) {
+                        SwitchState(AIState.wandering);
+                    }
+                }
+            } else {
+                secondsSincePlayerSeen += Time.deltaTime;
+            }
+        } else {
+            secondsSincePlayerSeen = 0f;
+        }
+
+
+        switch (state) {
+            default:
+                break;
+            case AIState.following:
+                target = player.position;
+
+                if ((target - transform.position).sqrMagnitude < 2f) {
+                    EventManager.TriggerEvent(EventType.PlayerDeath);
+                    SwitchState(AIState.done);
+                }
+                break;
+
+            case AIState.wandering:
+                if ((new Vector2(transform.position.x, transform.position.z) - new Vector2(target.x, target.z)).sqrMagnitude < 2f) {
+                    SwitchState(AIState.wandering);
+                }
+                break;
+        }
+
+        agent.SetDestination(target);
 	}
+
+    private void OnDrawGizmos () {
+        Gizmos.color = Color.green;
+        Gizmos.DrawSphere(target, 5f);
+        if (hitPoint != Vector3.zero) {
+            Gizmos.DrawRay(transform.position, hitPoint - transform.position);
+        }
+    }
+
+    //private void OnCollisionEnter (Collision collision) {
+    //    print("HIT");
+    //    if (collision.transform.CompareTag("Player")) {
+    //        print("Collision");
+
+    //    }
+    //}
 }

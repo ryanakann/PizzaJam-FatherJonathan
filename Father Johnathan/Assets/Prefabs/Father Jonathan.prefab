@@ -36,11 +36,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4538062173195950}
-  - component: {fileID: 82195587366011138}
   - component: {fileID: 136363161718245430}
   - component: {fileID: 114138928383775722}
   - component: {fileID: 195369395155817504}
   - component: {fileID: 114938419251494562}
+  - component: {fileID: 82195587366011138}
   m_Layer: 0
   m_Name: Father Jonathan
   m_TagString: Untagged
@@ -67,7 +67,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1817074319362090}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 2, z: 2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -181,9 +181,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd72c037e1c4448f18701c8e78dde663, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clips:
-  - {fileID: 0}
-  - {fileID: 8300000, guid: 27e20bcc21d5f41218be5213cd7816e3, type: 3}
+  timeBetweenClips: 10
 --- !u!114 &114778530670659696
 MonoBehaviour:
   m_ObjectHideFlags: 1
