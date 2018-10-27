@@ -18,6 +18,15 @@ public class FollowPlayer : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        RaycastHit hit;
+
+        if (Physics.Raycast(transform.position, target.position, out hit)) {
+            if (hit.transform.tag == "Player") {
+                //agent.speed = 3f;
+            } else {
+                agent.speed = 6f;
+            }
+        }
         agent.SetDestination(target.position);
         //agent.CalculatePath(target.position, 
 	}
