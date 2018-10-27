@@ -23,10 +23,11 @@ public class Interactor : MonoBehaviour {
         ray = new Ray(cam.position, cam.forward);
         if (Physics.Raycast(ray, out hit, 2f)) {
             //print("Hit: " + hit.transform.name);
-            if (hit.transform.GetComponent<Interactable>()) {
-                text.SetText("press 'e' to interact with " + hit.transform.name);
+            Interactable thing;
+            if (thing = hit.transform.root.GetComponent<Interactable>()) {
+                text.SetText("press 'e' to " + thing.interactMessage + " " + thing.name);
                 if (Input.GetKeyDown(KeyCode.E)) {
-                    hit.transform.GetComponent<Interactable>().Interact();
+                    hit.transform.root.GetComponent<Interactable>().Interact();
                 }
             } else {
                 text.SetText("");
