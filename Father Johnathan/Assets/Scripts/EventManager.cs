@@ -7,6 +7,7 @@ public enum EventType {
     ObtainCheese,
     EnterFurnace,
     PlayerDeath,
+    EndGame,
 }
 
 public class EventManager : MonoBehaviour {

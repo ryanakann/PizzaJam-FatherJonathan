@@ -7,6 +7,7 @@ public enum AIState {
     wandering,
     following,
     done,
+    fleeing,
 }
 
 public class FollowPlayer : MonoBehaviour {
@@ -45,10 +46,6 @@ public class FollowPlayer : MonoBehaviour {
         switch (state) {
             default:
                 break;
-            case AIState.following:
-                //target = player.position;
-                break;
-
             case AIState.wandering:
                 target = nodes.GetChild(Random.Range(0, nodes.childCount)).position;
                 target.y = transform.position.y;
@@ -64,31 +61,39 @@ public class FollowPlayer : MonoBehaviour {
 	void Update () {
         if (state == AIState.done) return;
 
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position, player.position - transform.position, out hit)) {
-            hitPoint = hit.point;
-            if (hit.transform.tag == "Player") {
-                SwitchState(AIState.following);
-                hitPlayer = true;
+        if (player.GetComponent<Player>().hasBreadstick) {
+            SwitchState(AIState.fleeing);
+        } else if (player.GetComponent<Player>().isHiding) {
+            if (state != AIState.wandering) {
+                SwitchState(AIState.wandering);
+            }
+        } else {
+            RaycastHit hit;
+            if (Physics.Raycast(transform.position, player.position - transform.position, out hit)) {
+                hitPoint = hit.point;
+                if (hit.transform.tag == "Player") {
+                    SwitchState(AIState.following);
+                    hitPlayer = true;
+                } else {
+                    hitPlayer = false;
+                }
             } else {
                 hitPlayer = false;
             }
-        } else {
-            hitPlayer = false;
-        }
 
-        if (!hitPlayer) {
-            if (secondsSincePlayerSeen > 3f) {
-                if (!stopFollowing) {
-                    if (state == AIState.following) {
-                        SwitchState(AIState.wandering);
+            if (!hitPlayer) {
+                if (secondsSincePlayerSeen > 3f) {
+                    if (!stopFollowing) {
+                        if (state == AIState.following) {
+                            SwitchState(AIState.wandering);
+                        }
                     }
+                } else {
+                    secondsSincePlayerSeen += Time.deltaTime;
                 }
             } else {
-                secondsSincePlayerSeen += Time.deltaTime;
+                secondsSincePlayerSeen = 0f;
             }
-        } else {
-            secondsSincePlayerSeen = 0f;
         }
 
 
@@ -107,6 +112,15 @@ public class FollowPlayer : MonoBehaviour {
             case AIState.wandering:
                 if ((new Vector2(transform.position.x, transform.position.z) - new Vector2(target.x, target.z)).sqrMagnitude < 2f) {
                     SwitchState(AIState.wandering);
+                }
+                break;
+
+            case AIState.fleeing:
+                target = transform.position + (transform.position - player.position).normalized * 10f;
+
+                if ((target - transform.position).sqrMagnitude < 2f) {
+                    EventManager.TriggerEvent(EventType.EndGame);
+                    SwitchState(AIState.done);
                 }
                 break;
         }

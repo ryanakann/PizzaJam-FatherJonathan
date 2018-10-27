@@ -15,11 +15,15 @@ public class Interactor : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         cam = Camera.main.transform;
-        text.SetText("");
+
+        if (text) {
+            text.SetText("");
+        }
 	}
 	
 	// Update is called once per frame
 	void Update () {
+        if (!text) return;
         ray = new Ray(cam.position, cam.forward);
         if (Physics.Raycast(ray, out hit, 2f)) {
             //print("Hit: " + hit.transform.name);

@@ -46,7 +46,7 @@ public class UILevelTransition : MonoBehaviour {
             yield return new WaitForSeconds(1.5f);
         }
 
-        SceneManager.LoadScene((SceneManager.GetActiveScene().buildIndex + progress) % SceneManager.sceneCount);
+        SceneManager.LoadScene((SceneManager.GetActiveScene().buildIndex + progress));
 
         while (image.color.a > 0f) {
             image.color -= new Color(0f, 0f, 0f, Time.deltaTime / fadeTime);
