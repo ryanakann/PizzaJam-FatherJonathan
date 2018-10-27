@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class RandomAudioClip : MonoBehaviour {
-    
-    public AudioClip[] clips;
+
+    public float timeBetweenClips = 10f;
+    private AudioClip[] clips;
     private AudioSource source;
 
 	// Use this for initialization
@@ -15,14 +16,14 @@ public class RandomAudioClip : MonoBehaviour {
 
         clips = Resources.LoadAll<AudioClip>("Audio/John Quotes/");
 
-        InvokeRepeating("Play", 3f, 3f);
+        InvokeRepeating("Play", timeBetweenClips, timeBetweenClips);
 	}
 
     void Play () {
-        print("Invoked!");
+        //print("Invoked!");
         if (clips.Length > 0) {
             source.clip = clips[Random.Range(0, clips.Length)];
-            //source.pitch = Random.Range(0.8f, 1.0f);
+            source.pitch = Random.Range(0.8f, 1.0f);
             source.Play();
         }
     }

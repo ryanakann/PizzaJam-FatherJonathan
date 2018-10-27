@@ -12,8 +12,6 @@ public class FollowPlayer : MonoBehaviour {
 	void Start () {
         agent = GetComponent<NavMeshAgent>();
         target = GameObject.FindWithTag("Player").transform;
-
-        print("Lit");
 	}
 	
 	// Update is called once per frame
@@ -24,7 +22,7 @@ public class FollowPlayer : MonoBehaviour {
             if (hit.transform.tag == "Player") {
                 //agent.speed = 3f;
             } else {
-                agent.speed = 6f;
+                //agent.speed = 6f;
             }
         }
         agent.SetDestination(target.position);
