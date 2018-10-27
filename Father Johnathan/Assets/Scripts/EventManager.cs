@@ -5,6 +5,7 @@ using UnityEngine.Events;
 
 public enum EventType {
     ObtainCheese,
+    EnterFurnace,
 }
 
 public class EventManager : MonoBehaviour {

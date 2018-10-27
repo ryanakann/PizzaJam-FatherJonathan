@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 
 public class UILevelTransition : MonoBehaviour {
@@ -18,6 +19,8 @@ public class UILevelTransition : MonoBehaviour {
         image.color = new Color(1f, 0f, 0f, 0f);
 
         DontDestroyOnLoad(transform.parent);
+
+        EventManager.StartListening(EventType.EnterFurnace, OnTransition);
     }
 
     public void OnTransition () {
@@ -30,7 +33,7 @@ public class UILevelTransition : MonoBehaviour {
             yield return new WaitForEndOfFrame();
         }
 
-        UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+        SceneManager.LoadScene((SceneManager.GetActiveScene().buildIndex + 1) % SceneManager.sceneCount);
 
         while (image.color.a > 0f) {
             image.color -= new Color(0f, 0f, 0f, Time.deltaTime / fadeTime);

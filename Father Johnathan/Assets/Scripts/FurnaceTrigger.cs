@@ -6,7 +6,7 @@ public class FurnaceTrigger : MonoBehaviour {
 
     private void OnTriggerEnter (Collider other) {
         if (other.CompareTag("Player")) {
-            UILevelTransition.instance.OnTransition();
+            EventManager.TriggerEvent(EventType.EnterFurnace);
         }
     }
 }

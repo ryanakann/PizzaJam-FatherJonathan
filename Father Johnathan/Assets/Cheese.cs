@@ -11,10 +11,12 @@ public class Cheese : Interactable {
     }
 
     private IEnumerator Burn () {
+        GetComponent<AudioSource>().Play();
+
         ParticleSystem system = gameObject.GetComponentInChildren<ParticleSystem>();
         system.gameObject.SetActive(true);
         system.Play();
-        print("Playing");
+
         float maxTime = system.main.duration;
         float currentTime = 0f;
         Light myLight = system.transform.GetChild(0).GetComponent<Light>();
