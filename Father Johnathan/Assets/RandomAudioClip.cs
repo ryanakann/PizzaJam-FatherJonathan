@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class RandomAudioClip : MonoBehaviour {
-
+    
     public AudioClip[] clips;
     private AudioSource source;
 
@@ -13,13 +13,16 @@ public class RandomAudioClip : MonoBehaviour {
             source = gameObject.AddComponent<AudioSource>();
         }
 
-        InvokeRepeating("Play", 5f, 10f);
+        clips = Resources.LoadAll<AudioClip>("Audio/John Quotes/");
+
+        InvokeRepeating("Play", 3f, 3f);
 	}
 
     void Play () {
+        print("Invoked!");
         if (clips.Length > 0) {
             source.clip = clips[Random.Range(0, clips.Length)];
-            source.pitch = Random.Range(0.8f, 1.0f);
+            //source.pitch = Random.Range(0.8f, 1.0f);
             source.Play();
         }
     }
