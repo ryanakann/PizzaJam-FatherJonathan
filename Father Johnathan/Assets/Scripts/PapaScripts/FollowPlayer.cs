@@ -35,6 +35,7 @@ public class FollowPlayer : MonoBehaviour {
 	// Use this for initialization
 	void Awake () {
         agent = GetComponent<NavMeshAgent>();
+        agent.speed = speed;
         player = GameObject.FindWithTag("Player").transform;
 
         if (GameObject.Find("Nodes")) {
