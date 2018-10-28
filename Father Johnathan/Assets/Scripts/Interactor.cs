@@ -16,9 +16,12 @@ public class Interactor : MonoBehaviour {
 	void Start () {
         cam = Camera.main.transform;
 
-        if (text) {
-            text.SetText("");
-        }
+        //if (!text) {
+        text = GameObject.Find("InteractText").GetComponent<TextMeshProUGUI>();
+        //}
+        //print("HEHE");
+
+        text.SetText("");
 	}
 	
 	// Update is called once per frame

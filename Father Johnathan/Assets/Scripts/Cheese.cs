@@ -5,7 +5,7 @@ using UnityEngine;
 public class Cheese : Interactable {
 
     public override void Interact () {
-        print("Interacting!");
+        //print("Interacting!");
         EventManager.TriggerEvent(EventType.ObtainCheese);
         StartCoroutine(Burn());
     }
