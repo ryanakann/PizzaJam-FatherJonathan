@@ -6,6 +6,8 @@ public class MusicManager : MonoBehaviour {
 
     public static MusicManager instance;
 
+    public AudioSource audiosource;
+
 	// Use this for initialization
 	void Awake () {
         if (instance == null) {
@@ -16,9 +18,13 @@ public class MusicManager : MonoBehaviour {
 
         DontDestroyOnLoad(this);
 	}
-	
-	// Update is called once per frame
-	void Update () {
+
+    void Start() {
+        audiosource.Play();
+    }
+
+    // Update is called once per frame
+    void Update () {
 		
 	}
 }
