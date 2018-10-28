@@ -8365,6 +8365,16 @@ Prefab:
       propertyPath: m_NavMeshLayer
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114792821648493522, guid: 56c820badc91746e3b1edb91ff00bf7f,
+        type: 2}
+      propertyPath: name
+      value: the Pepper Jack of Wrath
+      objectReference: {fileID: 0}
+    - target: {fileID: 135978726918488418, guid: 56c820badc91746e3b1edb91ff00bf7f,
+        type: 2}
+      propertyPath: m_Radius
+      value: 0.0075
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 56c820badc91746e3b1edb91ff00bf7f, type: 2}
   m_IsPrefabAsset: 0
