@@ -22,6 +22,8 @@ public class FollowPlayer : MonoBehaviour {
     Vector3 target;
     Vector3 hitPoint;
 
+    bool canKill = true;
+
     bool hitPlayer;
     bool stopFollowing;
     float secondsSincePlayerSeen;
@@ -39,6 +41,8 @@ public class FollowPlayer : MonoBehaviour {
 
         hitPlayer = false;
         secondsSincePlayerSeen = 0f;
+
+        EventManager.StartListening(EventType.EnterFurnace, ToggleCanKill);
 	}
 
     public void SwitchState (AIState newState) {
@@ -57,7 +61,11 @@ public class FollowPlayer : MonoBehaviour {
                 break;
         }
     }
-	
+
+    void ToggleCanKill() {
+        canKill = !canKill;
+    }
+
 	// Update is called once per frame
 	void Update () {
         if (state == AIState.done || state == AIState.stop) return;
@@ -104,7 +112,7 @@ public class FollowPlayer : MonoBehaviour {
             case AIState.following:
                 target = player.position;
 
-                if ((target - transform.position).sqrMagnitude < 2f) {
+                if (canKill && (target - transform.position).sqrMagnitude < 2f) {
                     EventManager.TriggerEvent(EventType.PlayerDeath);
                     SwitchState(AIState.done);
                 }
