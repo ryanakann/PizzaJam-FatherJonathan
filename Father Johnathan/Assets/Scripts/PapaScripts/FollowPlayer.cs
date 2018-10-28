@@ -28,6 +28,8 @@ public class FollowPlayer : MonoBehaviour {
     bool stopFollowing;
     float secondsSincePlayerSeen;
 
+    public float speed = 5f;
+
 	// Use this for initialization
 	void Start () {
         agent = GetComponent<NavMeshAgent>();
@@ -41,6 +43,8 @@ public class FollowPlayer : MonoBehaviour {
 
         hitPlayer = false;
         secondsSincePlayerSeen = 0f;
+
+        SwitchState(AIState.wandering);
 
         EventManager.StartListening(EventType.EnterFurnace, ToggleCanKill);
 	}
@@ -82,8 +86,14 @@ public class FollowPlayer : MonoBehaviour {
                 hitPoint = hit.point;
                 if (hit.transform.tag == "Player") {
                     SwitchState(AIState.following);
+                    agent.speed = speed;
                     hitPlayer = true;
                 } else {
+                    if ((transform.position - player.position).magnitude > 50f) {
+                        agent.speed = speed * 4;
+                    } else {
+                        agent.speed = speed * 2;
+                    }
                     hitPlayer = false;
                 }
             } else {
@@ -137,16 +147,17 @@ public class FollowPlayer : MonoBehaviour {
         agent.SetDestination(target);
 	}
 
-//    private void OnDrawGizmos () {
-//        #if UNITY_EDITOR
-//        return;
-//        #endif
+    private void OnDrawGizmos () {
+        //#if UNITY_EDITOR
+        //return;
+        //#endif
 
-//        Gizmos.color = Color.green;
-//        Gizmos.DrawSphere(target, 5f);
-//        if (hitPoint != Vector3.zero) {
-//            Gizmos.DrawRay(transform.position, hitPoint - transform.position);
-//=======
+        Gizmos.color = Color.green;
+        Gizmos.DrawSphere(target, 5f);
+        if (hitPoint != Vector3.zero) {
+            Gizmos.DrawRay(transform.position, hitPoint - transform.position);
+        }
+    }
  //               break;
  //           case AIState.following:
  //               target = player.position;

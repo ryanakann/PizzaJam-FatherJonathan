@@ -5,7 +5,7 @@ using UnityEngine;
 public class RandomAudioClip : MonoBehaviour {
 
     public float timeBetweenClips = 10f;
-    private AudioClip[] clips;
+    [SerializeField] private AudioClip[] clips;
     private AudioSource source;
 
 	// Use this for initialization
