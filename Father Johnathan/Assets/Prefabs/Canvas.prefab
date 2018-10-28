@@ -59,6 +59,7 @@ GameObject:
   - component: {fileID: 223511874797406748}
   - component: {fileID: 114576300593181768}
   - component: {fileID: 114144887971165604}
+  - component: {fileID: 114707937353504122}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -281,6 +282,17 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+--- !u!114 &114707937353504122
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1636269113492342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b35cf8c065c843b9aa3a1b19ff58668, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114731841495071132
 MonoBehaviour:
   m_ObjectHideFlags: 1

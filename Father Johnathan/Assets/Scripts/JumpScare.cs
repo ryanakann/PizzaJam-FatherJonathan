@@ -13,6 +13,10 @@ public class JumpScare : MonoBehaviour {
 	
     void Scare () {
         image.SetActive(true);
-        Destroy(gameObject, 2f);
+        Invoke("Unscare", 1.5f);
+    }
+
+    void Unscare () { 
+        image.SetActive(false);
     }
 }
