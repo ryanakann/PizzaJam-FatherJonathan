@@ -16,7 +16,8 @@ public class UILevelTransition : MonoBehaviour {
         instance = this;
 
         image = GetComponent<RawImage>();
-        image.color = new Color(1f, 0f, 0f, 0f);
+        //image.color = new Color(1f, 0f, 0f, 0f);
+        image.color = new Color(image.color.r, image.color.g, image.color.b, 0);
 
         DontDestroyOnLoad(transform.parent);
 
