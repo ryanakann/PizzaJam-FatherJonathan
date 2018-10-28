@@ -172,7 +172,6 @@ MeshRenderer:
   m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 02939a9d3bf444af4bfe16d27739b059, type: 2}
-  - {fileID: 2100000, guid: 02939a9d3bf444af4bfe16d27739b059, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -257,7 +256,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 02939a9d3bf444af4bfe16d27739b059, type: 2}
   - {fileID: 2100000, guid: 02939a9d3bf444af4bfe16d27739b059, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -2078,7 +2076,6 @@ MeshRenderer:
   m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 02939a9d3bf444af4bfe16d27739b059, type: 2}
-  - {fileID: 2100000, guid: 02939a9d3bf444af4bfe16d27739b059, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2362,7 +2359,6 @@ MeshRenderer:
   m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 02939a9d3bf444af4bfe16d27739b059, type: 2}
-  - {fileID: 2100000, guid: 02939a9d3bf444af4bfe16d27739b059, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2439,7 +2435,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1469207602}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
