@@ -35,7 +35,7 @@ public class Interactor : MonoBehaviour {
             if (thing = hit.transform.gameObject.GetComponentInParent<Interactable>()) {
                 text.SetText("press 'e' to " + thing.interactMessage + " " + thing.name);
                 if (Input.GetKeyDown(KeyCode.E)) {
-                    hit.transform.root.GetComponent<Interactable>().Interact();
+                    thing.Interact();
                 }
             } else {
                 text.SetText("");
