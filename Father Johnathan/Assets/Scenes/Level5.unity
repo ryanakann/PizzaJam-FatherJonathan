@@ -14745,6 +14745,11 @@ Prefab:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114138928383775722, guid: 8b19ddc12442140dca130940db888e44,
+        type: 2}
+      propertyPath: timeBetweenClips
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b19ddc12442140dca130940db888e44, type: 2}
   m_IsPrefabAsset: 0
