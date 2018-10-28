@@ -753,13 +753,12 @@ RectTransform:
 --- !u!114 &680855323
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114882072967237140, guid: acac01513dff1ef478d9882e3176064a,
-    type: 2}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 680855321}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b92ec932a7c94aa7b6576e6b6977ebb, type: 3}
+  m_Script: {fileID: 11500000, guid: 96a512011f8594b1e9225a1299a2ec7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   fadeTime: 2
@@ -1350,7 +1349,6 @@ GameObject:
   - component: {fileID: 1715166468}
   - component: {fileID: 1715166467}
   - component: {fileID: 1715166466}
-  - component: {fileID: 1715166470}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1436,17 +1434,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1715166470
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1715166465}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a0043fd99d0248b7ba883a0d01b99ec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1762864579
 GameObject:
   m_ObjectHideFlags: 0
