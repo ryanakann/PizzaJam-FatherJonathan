@@ -129,6 +129,10 @@ public class FollowPlayer : MonoBehaviour {
 	}
 
     private void OnDrawGizmos () {
+        #if UNITY_EDITOR
+        return;
+        #endif
+
         Gizmos.color = Color.green;
         Gizmos.DrawSphere(target, 5f);
         if (hitPoint != Vector3.zero) {
