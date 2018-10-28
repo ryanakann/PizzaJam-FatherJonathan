@@ -1286,6 +1286,11 @@ Prefab:
       propertyPath: m_Speed
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 114938419251494562, guid: 8b19ddc12442140dca130940db888e44,
+        type: 2}
+      propertyPath: startOnAwake
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b19ddc12442140dca130940db888e44, type: 2}
   m_IsPrefabAsset: 0

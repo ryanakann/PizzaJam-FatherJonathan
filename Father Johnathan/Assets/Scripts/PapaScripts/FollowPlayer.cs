@@ -30,6 +30,8 @@ public class FollowPlayer : MonoBehaviour {
 
     public float speed = 5f;
 
+    public bool startOnAwake = false;
+
 	// Use this for initialization
 	void Awake () {
         agent = GetComponent<NavMeshAgent>();
@@ -44,8 +46,14 @@ public class FollowPlayer : MonoBehaviour {
         hitPlayer = false;
         secondsSincePlayerSeen = 0f;
 
-        EventManager.StartListening(EventType.EnterFurnace, ToggleCanKill);
+        if (startOnAwake) {
+            SwitchState(AIState.wandering);
+        }
 	}
+
+    void Start () {
+        EventManager.StartListening(EventType.EnterFurnace, ToggleCanKill);
+    }
 
     public void SwitchState (AIState newState) {
         state = newState;
