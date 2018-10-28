@@ -2,18 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DoorScript : Interactable {
+public class DoorTriggerScript : MonoBehaviour {
 
     public Animator doorAnimator;
 
-    private void Start() {
-        if (!doorAnimator)
+	// Use this for initialization
+	void Start () {
+        if (!doorAnimator) {
             doorAnimator = GetComponent<Animator>();
-    }
+        }
 
-    public override void Interact() {
-        print("OpenyClozy!");
-
+        EventManager.StartListening(EventType.ObtainCheese, Toggle);
+	}
+	
+    void Toggle() {
         if (doorAnimator) {
             doorAnimator.SetTrigger("Toggle");
         }
