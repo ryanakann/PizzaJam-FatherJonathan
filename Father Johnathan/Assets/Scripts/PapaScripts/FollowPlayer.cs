@@ -97,7 +97,7 @@ public class FollowPlayer : MonoBehaviour {
                     hitPlayer = true;
                 } else {
                     if ((transform.position - player.position).magnitude > 50f) {
-                        agent.speed = speed * 4;
+                        agent.speed = speed * 3;
                     } else {
                         agent.speed = speed * 2;
                     }
