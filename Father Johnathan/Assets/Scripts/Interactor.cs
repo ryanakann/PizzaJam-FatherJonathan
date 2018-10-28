@@ -31,7 +31,8 @@ public class Interactor : MonoBehaviour {
         if (Physics.Raycast(ray, out hit, 2f)) {
             //print("Hit: " + hit.transform.name);
             Interactable thing;
-            if (thing = hit.transform.root.GetComponent<Interactable>()) {
+
+            if (thing = hit.transform.gameObject.GetComponentInParent<Interactable>()) {
                 text.SetText("press 'e' to " + thing.interactMessage + " " + thing.name);
                 if (Input.GetKeyDown(KeyCode.E)) {
                     hit.transform.root.GetComponent<Interactable>().Interact();
