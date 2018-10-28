@@ -31,7 +31,7 @@ public class FollowPlayer : MonoBehaviour {
     public float speed = 5f;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
         agent = GetComponent<NavMeshAgent>();
         player = GameObject.FindWithTag("Player").transform;
 
@@ -43,8 +43,6 @@ public class FollowPlayer : MonoBehaviour {
 
         hitPlayer = false;
         secondsSincePlayerSeen = 0f;
-
-        SwitchState(AIState.wandering);
 
         EventManager.StartListening(EventType.EnterFurnace, ToggleCanKill);
 	}
@@ -120,6 +118,7 @@ public class FollowPlayer : MonoBehaviour {
             default:
                 break;
             case AIState.following:
+                //print("Following");
                 target = player.position;
 
                 if (canKill && (target - transform.position).sqrMagnitude < 2f) {
@@ -135,7 +134,8 @@ public class FollowPlayer : MonoBehaviour {
                 break;
 
             case AIState.fleeing:
-                target = transform.position + (transform.position - player.position).normalized * 10f;
+                agent.speed = 5f;
+                target = transform.position + (new Vector3(transform.position.x, 0f, transform.position.z) - new Vector3(player.position.x, 0f, player.position.z)).normalized * 1.5f;
 
                 if ((target - transform.position).sqrMagnitude < 2f) {
                     EventManager.TriggerEvent(EventType.EndGame);
